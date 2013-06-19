@@ -765,8 +765,8 @@ ngx_http_uploadprogress_handler(ngx_http_request_t * r)
     ngx_http_uploadprogress_cleanup_t *upcln;
     ngx_pool_cleanup_t              *cln;
 
-    /* Is it a POST connection */
-    if (r->method != NGX_HTTP_POST) {
+    /* Only look for progress IDs on POST, PUT and PATCH */
+    if (!(r->method & (NGX_HTTP_POST | NGX_HTTP_PUT | NGX_HTTP_PATCH))) {
         return NGX_DECLINED;
     }
 
