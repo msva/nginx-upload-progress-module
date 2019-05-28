@@ -1216,6 +1216,8 @@ ngx_http_uploadprogress_handler(ngx_http_request_t * r)
         up->length = r->headers_in.content_length_n;
         if (r->request_body) {
             up->rest = r->request_body->rest;
+        } else {
+         up->rest = up->length;
         }
     }
 
